@@ -7,3 +7,7 @@
 #SBATCH --cpus-per-task=8       # Use 8 CPU cores for the task
 #SBATCH --mem=256G              # Request 256GB of memory
 #SBATCH --partition=short       # Use the 'short' partition (or change as needed)
+
+
+# Run your R script
+Rscript R/hello_world.R
