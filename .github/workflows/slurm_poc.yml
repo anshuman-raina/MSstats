@@ -1,0 +1,48 @@
+name: Run Simple R Script on HPC via Slurm
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test-hpc:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set Up SSH Access
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H discovery.neu.edu >> ~/.ssh/known_hosts
+
+    - name: Transfer Files to HPC
+      run: |
+        scp hello_world.R hello_world.slurm raina.ans@login-00.discovery.neu.edu:/path/to/hpc/
+
+    - name: Submit Slurm Job
+      run: |
+        ssh raina.ans@login-00.discovery.neu.edu "cd /path/to/hpc/ && sbatch hello_world.slurm"
+
+    - name: Monitor Slurm Job
+      run: |
+        ssh raina.ans@login-00.discovery.neu.edu "
+          while squeue -u your-username | grep -q 'R-test-job'; do
+            echo 'Job is still running...'
+            sleep 10
+          done
+        "
+
+    - name: Fetch Output
+      run: |
+        scp raina.ans@login-00.discovery.neu.edu:/path/to/hpc/hello_output.txt hello_output.txt
+
+    - name: Upload Output as Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: hello-world-output
+        path: hello_output.txt
