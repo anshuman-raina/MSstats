@@ -39,7 +39,7 @@ jobs:
 
     - name: Fetch Output
       run: |
-        scp raina.ans@login-00.discovery.neu.edu:home/raina.ans/R/my_job_output.txt my_job_output.txt
+        scp raina.ans@login-00.discovery.neu.edu:R/my_job_output.txt my_job_output.txt
 
     - name: Upload Output as Artifact
       uses: actions/upload-artifact@v3
