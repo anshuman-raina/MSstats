@@ -11,4 +11,4 @@
 module load R
 
 # Run your R script
-Rscript R/hello_world.R
+Rscript R/abcd.R
