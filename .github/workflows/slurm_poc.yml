@@ -18,7 +18,7 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H ood.discovery.neu.edu >> ~/.ssh/known_hosts
+        ssh-keyscan -H login-00.discovery.neu.edu >> ~/.ssh/known_hosts
 
     - name: Transfer Files to HPC
       run: |
