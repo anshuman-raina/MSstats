@@ -22,11 +22,11 @@ jobs:
 
     - name: Transfer Files to HPC
       run: |
-        scp hello_world.R hello_world.slurm raina.ans@login-00.discovery.neu.edu:/path/to/hpc/
+        scp hello_world.R hello_world.slurm raina.ans@login-00.discovery.neu.edu:/home/raina.ans/R
 
     - name: Submit Slurm Job
       run: |
-        ssh raina.ans@login-00.discovery.neu.edu "cd /path/to/hpc/ && sbatch hello_world.slurm"
+        ssh raina.ans@login-00.discovery.neu.edu "cd home/raina.ans/R && sbatch hello_world.slurm"
 
     - name: Monitor Slurm Job
       run: |
@@ -39,7 +39,7 @@ jobs:
 
     - name: Fetch Output
       run: |
-        scp raina.ans@login-00.discovery.neu.edu:/path/to/hpc/hello_output.txt hello_output.txt
+        scp raina.ans@login-00.discovery.neu.edu:home/raina.ans/R/hello_output.txt hello_output.txt
 
     - name: Upload Output as Artifact
       uses: actions/upload-artifact@v3
