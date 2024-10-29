@@ -26,7 +26,7 @@ jobs:
 
     - name: Submit Slurm Job
       run: |
-        ssh raina.ans@login-00.discovery.neu.edu "cd home/raina.ans/R && sbatch hello_world.slurm"
+        ssh raina.ans@login-00.discovery.neu.edu "cd R && sbatch hello_world.slurm"
 
     - name: Monitor Slurm Job
       run: |
