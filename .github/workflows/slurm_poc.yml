@@ -22,7 +22,7 @@ jobs:
 
     - name: Transfer Files to HPC
       run: |
-        scp hello_world.R hello_world.slurm raina.ans@login-00.discovery.neu.edu:/home/raina.ans/R
+        scp abcd.R hello_world.slurm raina.ans@login-00.discovery.neu.edu:/home/raina.ans/R
 
     - name: Submit Slurm Job
       run: |
