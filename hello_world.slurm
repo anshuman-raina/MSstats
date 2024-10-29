@@ -8,6 +8,7 @@
 #SBATCH --mem=256G              # Request 256GB of memory
 #SBATCH --partition=short       # Use the 'short' partition (or change as needed)
 
+module load R
 
 # Run your R script
 Rscript R/hello_world.R
